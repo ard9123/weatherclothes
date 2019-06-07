@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>  Match The Weather</title>
+        <link rel="stylesheet" href="weatherstyle.css">
+        <div id = "center">
+        <h1>Match The Weather</h1>
+        </div>
+        <div id ="subHead">
+        <h2>by Andy Doyle</h2>
+        <h3>Checks the weather for you and creates an outfit accordingly</h3>
+        </div>
+    </head>
+    <body>
+        
+        <p1>Your location: 
+            <form>
+            <input type = "radio" Name = "locat" Id = "SanAntonio">San Antonio<br>
+            <input type = "radio" Name = "locat" Id = "Milan">Lagos, Nigeria<br>
+            <input type = "radio" Name = "locat" Id = "Reykjavik">Reykjavik, Iceland<br>
+            <input type = "radio" Name = "locat" Id = "MXcity">Mexico City<br>
+            </form> 
+            <form>
+                <input type="button" Id = "submit" value="Submit" onclick = "startUp();">
+            </form>
+        </p1>
+        <div class="left">
+        <p3>Average Temperature for Today in Fahrenheit:</p3>
+        <p4 id = "temp"></p4><br>
+        <p5>Humidity Percentage: </p5>
+        <p6 id = "humid"></p6><br>
+        <p7>Wind Speed:</p7>
+        <p8 id = "wspeed"></p8><br>
+        <p9>Summary:</p9>
+        <p10 id = "main"></p10>
+        </div><br>
+        
+    <script src="weathersite.js"></script>
+    </body>
+</html>
