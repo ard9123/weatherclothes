@@ -4,8 +4,16 @@
  
 
 ///////clothing item pictures
-
-
+/*
+const clothesPictures = new Array();
+clothesPictures[0] = new Image(200,200);
+clothesPictures[0].src = "C:\Users\ard91\Documents\GitHub\weatherclothes\jeans.jpg";
+*/
+const picShirts = ["\\aegrey2.jpg","\\aeshirt2.jpg","\\hollister.jpg","\\images.jpg"];
+const picBottoms = ["\\bchino.png","\\kchino.jpg","\\jeans.jpg","\\khakis.jpg"];
+const picturePath = "C:\\Users\\ard91\\Documents\\GitHub\\weatherclothes";
+let botPath;
+let topPath;
 
 
 
@@ -17,22 +25,24 @@ let Clothes = function(where,color,longness){
 }
 
 ///////////////clothing items objects
-const pinkHol = new Clothes('top','reds','long');
-const hamilton = new Clothes('top','blues','tshirt');
-const bayern = new Clothes('top','reds','tshirt');
-const ncaa = new Clothes('top','blues','long');
-var shirts = [pinkHol,hamilton,bayern,ncaa];
+const hollister = new Clothes('top','reds','long');
+const aegrey2 = new Clothes('top','blues','tshirt');
+const aeshirt2 = new Clothes('top','reds','tshirt');
+const images = new Clothes('top','blues','long');
+var shirts = [aegrey2,aeshirt2,hollister,images];
 
-const chinos = new Clothes('bottom','blues','pants');
+const jeans = new Clothes('bottom','blues','pants');
 const khakis = new Clothes('bottom','reds','pants');
-const ksho = new Clothes('bottom','reds','shorts');
-const boats = new Clothes('bottom','blues','shorts');
-var bottoms = [chinos,khakis,boats,ksho];
+const kchino = new Clothes('bottom','reds','shorts');
+const bchino = new Clothes('bottom','blues','shorts');
+var bottoms = [bchino,kchino,jeans,khakis];
+
 
 //put pictures array as last spot in objects array
 
 let colorz;
-const randColor = Math.round(Math.random());
+const randColor =()=> {
+    return Math.round(Math.random())};
 if (randColor == 1){
      colorz = 'reds';
 }
@@ -49,9 +59,18 @@ const isEligible = function(Model){
     }
 
 function startUp(){
+   
+    if ( randColor() == 1){
+        console.log("9999999999999999999")
+        document.getElementById("shoes").src = picturePath+ "\\grayvans.jpg";
+    }
+    else{
+        console.log(7777777777777777);
+        document.getElementById("shoes").src = picturePath+ "\\nmds.jpg";
+    }
     var thisCity;
     if(document.getElementById("SanAntonio").checked == true){thisCity= "San Antonio, US"}
-    else if(document.getElementById("Milan").checked == true){thisCity = "Lagos, NG"}
+    else if(document.getElementById("Milan").checked == true){thisCity = "Tokyo, JP"}
     else if(document.getElementById("MXcity").checked == true){thisCity= "Mexico City, MX"}
     else if(document.getElementById("Reykjavik").checked == true){thisCity = "Reykjavik, IS"}
     
@@ -80,14 +99,25 @@ function weatherGatherer( cityID ) {
     .then(toDo=>{
         console.log(toDo)
         let model = new Clothes('top',colorz,toDo[1]);
-            
+           
         var cannotFail = function(arrayz){
             var failCounts = 0;
             for(var i = 0; i <arrayz.length;i++){
                 var compareRes = isEligible.call(arrayz[i],model);
                 
                 if(compareRes==true){
-                    console.log("sucess")
+                    console.log(arrayz[i]);
+                    console.log("success");
+                    if (model.where == 'top'){
+                        topPath = (picturePath + picShirts[i]);
+                        console.log(topPath);
+                        document.getElementById("displayTop").src = topPath; 
+                    }
+                    else{botPath = (picturePath + picBottoms[i]);
+                        console.log(botPath);
+                        document.getElementById("displayBottom").src = botPath;
+                    }
+                    
                     return
                 }
                 else{failCounts+=1}
@@ -101,7 +131,7 @@ function weatherGatherer( cityID ) {
                 cannotFail(shirts);
         }
         cannotFail(shirts);
-      
+        
         model.where = 'bottom';
         model.longness = toDo[0];
         cannotFail(bottoms);
@@ -172,31 +202,15 @@ rainCoat = (overallWeather)=>{
     let rainCoat;
     if(overallWeather == "Rain"|| overallWeather =="Thunderstorm"){
         rainCoat= true;
+        document.getElementById("coat").src = picturePath+ "\\rain.jpg";
     } 
-    else{rainCoat=false};
+    else{rainCoat=false;
+        document.getElementById("coat").src = null;
+    };
     console.log("Rain Coat: " + rainCoat);
+    //const throwError = ()
+    
     return rainCoat;
     
 }
 
-/*
-
-async function getWeather(yourLocation){
-    try {
-        const key = 'a2b9ebb3b6b76c74ba5c2b5bca852517';
-        const result = await  fetch('https://api.openweathermap.org/data/2.5/weather?q=' + yourLocation+ '&appid=' + key);
-        const data = await result.json();
-        return data
-         
-     }  catch(error){
-            console.log(error);
-     }
-    
-}
-let dataSA= [];
-let useableData = getWeather("San Antonio,US").then(data=> {
-    dataSA= [Math.floor((data.main.temp-273) * (9/5) + 32),data.weather[0].main,data.main.humidity,data.wind.speed];
-    console.log(dataSA);
-    return dataSA;
-});
-*/
