@@ -1,7 +1,7 @@
 //clothing item pictures
-const picShirts = ["\\aegrey2.jpg", "\\aeshirt2.jpg", "\\hollister.jpg", "\\images.jpg"];
-const picBottoms = ["\\bchino.png", "\\kchino.jpg", "\\jeans.jpg", "\\khakis.jpg"];
-const picturePath = "C:\\Users\\ard91\\Documents\\GitHub\\weatherclothes\\clothes";
+const picShirts = ["/aegrey2.jpg", "/aeshirt2.jpg", "/hollister.jpg", "/images.jpg"];
+const picBottoms = ["/bchino.png", "/kchino.jpg", "/jeans.jpg", "/khakis.jpg"];
+const picturePath = "clothes";
 let botPath;
 let topPath;
 
